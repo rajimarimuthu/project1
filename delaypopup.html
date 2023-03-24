@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+      
+        
+        #newsletter-popup{
+          margin: 150px auto;
+          padding:0px;
+          background: #f5828a;
+          border-radius: 5px;
+          width: 25%;
+          position: relative;
+          transition: all 1s ease-in-out;
+        }
+        
+        @media screen and (max-width: 1366px){
+          #newsletter-popup{
+            width: 40%;
+          }
+        }
+        
+        @media screen and (max-width: 992px){
+          #newsletter-popup{
+            width: 70%;
+          }
+        }
+        
+        .newsletter-overlay{
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: rgba(0, 0, 0, 0.7);
+          transition: opacity 500ms;
+          visibility: visible;
+          opacity: 1;
+          display: none;
+        }
+        
+       
+        #newsletter-popup .popup-close{
+          color: #fff;
+          height: 30px;
+          width: 30px;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          text-align: center;
+          text-decoration: none;
+          line-height: 30px;
+          font-family:  "Gloria Hallelujah",cursive;
+          font-weight: bold;
+        }
+        </style>
+        
+         
+        
+        
+        </head>
+        
+        <body translate="no" >
+       
+        
+        <div  class="newsletter-overlay">
+        
+          <div id="newsletter-popup">
+            <a href="#" class="popup-close">X</a>
+            <img src="popup.jpeg" alt="" style="width: 100%;">
+          </div>
+        </div>
+            <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+        
+          <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js'></script>
+              <script id="rendered-js" >
+        var delay = 5000; //in milleseconds
+        
+        jQuery(document).ready(function ($) {
+          setTimeout(function () {showNewsletterPopup();}, delay);
+        
+          $('.popup-close').click(function () {
+            $('.newsletter-overlay').hide();
+        
+            //when closed create a cookie to prevent popup to show again on refresh
+            setCookie('newsletter-popup', 'popped', 30);
+          });
+        });
+        
+        function showNewsletterPopup() {
+          if (getCookie('newsletter-popup') == "") {
+            $('.newsletter-overlay').show();
+            setCookie('newsletter-popup', 'popped', 30);
+          } else
+          {
+            console.log("Newsletter popup blocked.");
+          }
+        }
+        
+        
+        function setCookie(cname, cvalue, exdays)
+        {
+          var d = new Date();
+          d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+          var expires = "expires=" + d.toGMTString();
+          document.cookie = cname + "=" + cvalue + "; " + expires + "; path=/";
+        }
+        
+        function getCookie(cname)
+        {
+          var name = cname + "=";
+          var ca = document.cookie.split(';');
+          for (var i = 0; i < ca.length; i++)
+          {if (window.CP.shouldStopExecution(0)) break;
+            var c = jQuery.trim(ca[i]);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+          }window.CP.exitedLoop(0);
+          return "";
+        }
+        //# sourceURL=pen.js
+            </script>
+</body>
+</html>
